@@ -1,23 +1,15 @@
 @interface SBAwayView {}
 - (void)showMediaControls;
-- (void)setIsShowingControls:(BOOL)arg1;
-
 @end
 
 %hook SBAwayView
-- (void)hideMediaControls {
+- (void)hideMediaControls {  }
+- (void)_hideMediaControls {  }
+%end
 
+%hook SBAwayController
+- (void)activate {
+  [self showMediaControls];
+  %orig;
 }
-- (void)_hideMediaControls {
-
-
-}
-
-- (void)startAnimations {
-
-%orig;
-[self showMediaControls];
-
-}
-
 %end
